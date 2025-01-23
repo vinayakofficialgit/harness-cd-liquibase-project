@@ -1,9 +1,9 @@
 # Use the official .NET image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["MyDotNetApp/MyDotNetApp.csproj", "MyDotNetApp/"]
 RUN dotnet restore "MyDotNetApp/MyDotNetApp.csproj"
@@ -12,7 +12,7 @@ WORKDIR "/src/MyDotNetApp"
 RUN dotnet build "MyDotNetApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MyDotNetApp.csproj" -c Release -o /app/publish
+RUN dotnet publish "MyDotNetApp.csproj" -c Release -o /app/publish  --framework=net8.0
 
 FROM base AS final
 WORKDIR /app
