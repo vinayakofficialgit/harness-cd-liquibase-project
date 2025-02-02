@@ -1,0 +1,90 @@
+
+ pipeline {
+    agent any  
+
+    environment {
+        IMAGE_NAME = "dockerdotvinayak/dotnetapp" // Change to your Docker Hub repo name
+        VERSION_FILE = "VERSION" // File to store version
+    }
+
+    stages {
+        stage("Clone Repository") {
+            steps {
+                git branch: 'main', url: 'https://github.com/vinayakofficialgit/harness-cd-liquibase-project.git'
+                sh "pwd"
+                
+            }
+        }
+        
+        stage("Increment Version") {
+            steps {
+                script {
+                    // Check if VERSION file exists, if not create one with 0.0.0
+                    if (!fileExists(env.VERSION_FILE)) {
+                        sh "echo '0.0.0' > ${env.VERSION_FILE}"
+                    }
+                    
+                    // Read the current version
+                    def currentVersion = readFile(env.VERSION_FILE).trim()
+                    
+                    // Split manually into major, minor, patch (avoiding spread operator)
+                    def versionParts = currentVersion.tokenize('.')
+                    def major = versionParts[0].toInteger()
+                    def minor = versionParts[1].toInteger()
+                    def patch = versionParts[2].toInteger()
+                    
+                    // Increment the patch version
+                    def newVersion = "${major}.${minor}.${patch + 1}"
+                    
+                    // Save the new version
+                    writeFile(file: env.VERSION_FILE, text: newVersion)
+                    echo "New Version: ${newVersion}"
+                    
+                    // Set the new version as an environment variable
+                    env.IMAGE_TAG = newVersion
+                }
+            }
+        }
+
+        stage("Build Docker Image") {
+            steps {
+                script {
+
+                    sh "docker build -t ${env.IMAGE_NAME}:${env.IMAGE_TAG} App/."
+                }
+            }
+        }
+
+        stage("Login to Docker Hub") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+                                                  usernameVariable: 'DOCKER_USER', 
+                                                  passwordVariable: 'DOCKER_PASS')]) {
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                }
+            }
+        }
+
+        stage("Push Docker Image") {
+            steps {
+                script {
+                    sh "docker push ${env.IMAGE_NAME}:${env.IMAGE_TAG}"
+                }
+            }
+        }
+
+         stage('Commit Updated Version') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    script {
+                        sh 'git config user.email "ci-bot@yourdomain.com"'
+                        sh 'git config user.name "Jenkins CI"'
+                        sh 'git add VERSION'
+                        sh 'git commit -m "Updated version to 0.0.9"'
+                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/vinayakofficialgit/harness-cd-liquibase-project.git"
+                    }
+                }
+            }
+        }
+    }
+}
