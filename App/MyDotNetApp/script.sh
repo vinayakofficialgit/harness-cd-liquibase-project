@@ -3,4 +3,4 @@
 sudo snap install dotnet-sdk --classic
 dotnet restore 
 dotnet build
-dotnet run  --framework=net8.0
+dotnet run  --framework=net8.0 &
