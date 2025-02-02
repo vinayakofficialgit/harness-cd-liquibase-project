@@ -15,8 +15,8 @@
 
  then in jenkins  go to manage jenkin add credential for 
 
- docker   username password
- github   username password  
+ docker      give username password  but id as docker-hub-credentials 
+ github    give username password    but id as github-credentials     ######we are giving github cred for commit the version id of docker image when pushing so that next when its clone it will look on VERSION file 
  
 
 
