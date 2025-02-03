@@ -70,12 +70,17 @@
    </changeSet>
 
 
- <changeSet id="10" author="vinayak">
+   <changeSet id="10" author="vinayak">
    	    <insert tableName="users">
         	<column name="name" value="10 user"/>
    	    </insert>
    </changeSet>
 
+   <changeSet id="11" author="vinayak">
+   	    <insert tableName="users">
+        	<column name="name" value="github-user"/>
+   	    </insert>
+   </changeSet>
 
 
 </databaseChangeLog>
