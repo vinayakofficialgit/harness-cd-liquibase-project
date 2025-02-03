@@ -62,5 +62,30 @@ liquibase --classpath=mysql-connector-j-9.1.0.jar  update
 ###this is how you add comment
  <!-- commented one This XML file contains the database changes (schema changes, tables, columns, etc.). -->
 
+###############################################################################################
+create this shell script in harness cd pipeline
+#!/bin/bash
 
+pwd
+
+
+liquibase --driver=com.mysql.cj.jdbc.Driver \
+  --url="jdbc:mysql://${DB_HOST}:${DB_PORT}/data-db" \
+  --username="${DB_USER}" \
+  --password="${DB_PASSWORD}" \
+  --classpath="mysql-connector-j-9.1.0.jar" \
+  --changeLogFile=db.changelog.xml update
+
+
+
+
+
+
+
+and in optional configuration
+
+give 'host' mean IP
+'ssh'
+'working dir'
+/var/lib/jenkins/workspace/jenkinsCI-prod/liquibase
 
