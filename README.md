@@ -45,7 +45,7 @@ SHOW TABLES;
 SELECT * FROM DATABASECHANGELOG;
 
 
-###used to get "metadata" about the structure or Schema of the DATABASECHANGELOG table
+######used to get "metadata" about the structure or Schema of the DATABASECHANGELOG table
 DESCRIBE  DATABASECHANGELOG;
 
 
@@ -61,11 +61,14 @@ liquibase --classpath=mysql-connector-j-9.1.0.jar  status
 
 ###this is how you add comment
  <!-- commented one This XML file contains the database changes (schema changes, tables, columns, etc.). -->
+ 
+another way to comment is
+  <!-- give anything -->
 
-
-####to delete with record from DATABASECHANGELOG take access mysql -u root -p
+#####to delete with record from DATABASECHANGELOG take access mysql -u root -p
 
 SELECT * FROM DATABASECHANGELOG;
+
 DELETE FROM DATABASECHANGELOG WHERE ID = '5' AND AUTHOR = 'faizan';        ###give ID and author name to delete
 
 
