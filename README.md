@@ -56,14 +56,18 @@ Liquibase applies schema changes using "change sets" inside the db.changelog.xml
 
 #run this in liquibase folder
 liquibase --classpath=mysql-connector-j-9.1.0.jar  update
-
-
+#to check status
+liquibase --classpath=mysql-connector-j-9.1.0.jar  status
 
 ###this is how you add comment
  <!-- commented one This XML file contains the database changes (schema changes, tables, columns, etc.). -->
 
 
-liquibase status
+####to delete with record from DATABASECHANGELOG take access mysql -u root -p
+SELECT * FROM DATABASECHANGELOG;
+DELETE FROM DATABASECHANGELOG WHERE ID = '5' AND AUTHOR = 'faizan';        ###give ID and author name to delete
+
+
 
 ###############################################################################################
 create this shell script in harness cd pipeline
