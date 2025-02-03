@@ -63,6 +63,7 @@ liquibase --classpath=mysql-connector-j-9.1.0.jar  status
 
     <!-- you can add or Include other changelog files below and  -->
     <include file="new-changelog.sql" relativeToChangelogFile="true"/>
+    
 </databaseChangeLog>     ----you can paste above line near<------- look also indentation
 
 
