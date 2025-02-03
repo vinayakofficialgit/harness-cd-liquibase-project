@@ -81,7 +81,9 @@
         	<column name="name" value="github-user"/>
    	    </insert>
    </changeSet> 
-   
+
+
+    
 
 </databaseChangeLog>
 
