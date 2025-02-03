@@ -62,6 +62,9 @@ liquibase --classpath=mysql-connector-j-9.1.0.jar  update
 ###this is how you add comment
  <!-- commented one This XML file contains the database changes (schema changes, tables, columns, etc.). -->
 
+
+liquibase status
+
 ###############################################################################################
 create this shell script in harness cd pipeline
 #!/bin/bash
