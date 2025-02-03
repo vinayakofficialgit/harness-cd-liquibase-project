@@ -81,6 +81,9 @@
         	<column name="name" value="github-user"/>
    	    </insert>
    </changeSet> 
+
+    <!--adding here .sql file-->
+    <include file="new-changelog.sql" relativeToChangelogFile="true"/>
   
 </databaseChangeLog>
 
