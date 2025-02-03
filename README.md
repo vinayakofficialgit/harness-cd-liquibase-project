@@ -59,6 +59,17 @@ liquibase --classpath=mysql-connector-j-9.1.0.jar  update
 #to check status
 liquibase --classpath=mysql-connector-j-9.1.0.jar  status
 
+#to add another file .SQL or .XML in your liquibase.properties you don't have to both file name just mention file like demo.chnage.xml in liquibase.properties file after that just go to demo.chnage.xml file and add this line
+
+    <!-- you can add or Include other changelog files below and  -->
+    <include file="new-changelog.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>    #####you can paste above line near<------- look also indentation
+
+
+
+
+
+
 ###this is how you add comment
  <!-- commented one This XML file contains the database changes (schema changes, tables, columns, etc.). -->
  
