@@ -64,6 +64,7 @@ liquibase --classpath=mysql-connector-j-9.1.0.jar  status
 
 
 ####to delete with record from DATABASECHANGELOG take access mysql -u root -p
+
 SELECT * FROM DATABASECHANGELOG;
 DELETE FROM DATABASECHANGELOG WHERE ID = '5' AND AUTHOR = 'faizan';        ###give ID and author name to delete
 
