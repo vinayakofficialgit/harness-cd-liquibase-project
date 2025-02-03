@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <!-- This creates a table named 'users' -->
+    <!-- This creates a table named 'users' and also column name -->
     <changeSet id="1" author="admin">
         <createTable tableName="users">
             <column name="id" type="int" autoIncrement="true">
@@ -33,6 +33,8 @@
         </addColumn>
     </changeSet>
 
+
+     <!-- This create table named 'orders' -->
     <changeSet id="4" author="admin">
         <createTable tableName="orders">
             <column name="id" type="int" autoIncrement="true">
@@ -47,7 +49,7 @@
     </changeSet>
 
 
-
+ <!-- This inserting in table named 'vinayak_table' which should have coloumn name and value as john doe -->
     <changeSet id="5" author="faizan">
     	<insert tableName="vinayak_table">
         	<column name="name" value="John Doe"/>
