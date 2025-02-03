@@ -89,3 +89,11 @@ give 'host' mean IP
 'working dir'
 /var/lib/jenkins/workspace/jenkinsCI-prod/liquibase
 
+
+
+####################################################
+
+
+
+#######################################################
+for Auto trigger through github connector --u need to add --go to trigger---add github connector ---give username ,PAT ----in condition give branch  as main  and  in changed files as  liquibase/db.changelog.xml------  now copy  the webhook from harness UI and go to github repo ---add a webhook give ---select application type and push some commit
