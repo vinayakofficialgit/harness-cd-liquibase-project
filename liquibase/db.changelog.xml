@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- This creates a table named 'users' -->
+    <changeSet id="1" author="admin">
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- This creates a table named 'vinayak_table' -->
+    <changeSet id="2" author="admin">
+        <createTable tableName="vinayak_table">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- This adds or alters column in table named 'vinayak_table' -->
+    <changeSet id="3" author="vinayak">
+        <addColumn tableName="vinayak_table">
+            <column name="phone_numbers" type="varchar(20)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="4" author="admin">
+        <createTable tableName="orders">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints foreignKeyName="fk_user_orders" references="users(id)"/>
+            </column>
+            <column name="order_date" type="datetime"/>
+            <column name="total_amount" type="decimal(10,2)"/>
+        </createTable>
+    </changeSet>
+
+
+
+    <changeSet id="5" author="faizan">
+    	<insert tableName="vinayak_table">
+        	<column name="name" value="John Doe"/>
+    	</insert>
+    </changeSet>
+
+    <changeSet id="6" author="faizan">
+        <insert tableName="vinayak_table">
+                <column name="name" value="vinayak sharma"/>
+        </insert>
+    </changeSet>
+
+ 
+    <changeSet id="9" author="vinayak">
+   	<insert tableName="users">
+        	<column name="name" value="latest user"/>
+   	</insert>
+   </changeSet>
+
+
+
+
+
+</databaseChangeLog>
+
