@@ -1,4 +1,5 @@
 --liquibase formatted sql
+
 --changeset your.linuxuser:11        
 CREATE TABLE IF NOT EXISTS person (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -18,10 +19,10 @@ CREATE TABLE IF NOT EXISTS company (
     address2 VARCHAR(50),
     city VARCHAR(30)
 );
-
 --rollback DROP TABLE company;
 
 --changeset other.DevOps:13 labels:example-label context:example-context
 --comment: example comment
-alter table person add column country varchar(2);
+--precondition-sql-check expectedResult:0 SELECT COUNT(*) FROM information_schema.columns WHERE table_name='person' AND column_name='country';
+ALTER TABLE person ADD COLUMN country VARCHAR(2);
 --rollback ALTER TABLE person DROP COLUMN country;
