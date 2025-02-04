@@ -21,8 +21,3 @@ CREATE TABLE IF NOT EXISTS company (
 );
 --rollback DROP TABLE company;
 
---changeset other.DevOps:13 labels:example-label context:example-context
---comment: example comment
---precondition-sql-check expectedResult:0 SELECT COUNT(*) FROM information_schema.columns WHERE table_name='person' AND column_name='country';
-ALTER TABLE person ADD COLUMN country VARCHAR(2);
---rollback ALTER TABLE person DROP COLUMN country;
