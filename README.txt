@@ -2,7 +2,8 @@
 
 
 
-
+##dotnet build 
+###dotnet 
 
 ##################when you want to run jenkin file and build and push to dockerhub 
 ####run through rootuser in terminal before running jenkin pipelines
